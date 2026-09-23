@@ -1,0 +1,173 @@
+{
+  "generator": "scripts/generate_demo_data.py",
+  "seed": 20260101,
+  "note": "Synthetic imagery with exactly-known ground truth. Spectral and backscatter signatures follow published class behaviour so indices and fusion behave as they would on real scenes. These are NOT real satellite acquisitions and the coordinates are illustrative.",
+  "grid": {
+    "width": 512,
+    "height": 512,
+    "pixel_size_m": 10.0,
+    "crs": "EPSG:32643",
+    "pixel_area_m2": 100.0,
+    "transform": [
+      10.0,
+      0.0,
+      700000.0,
+      0.0,
+      -10.0,
+      2100000.0
+    ],
+    "bounds": [
+      700000.0,
+      2094880.0,
+      705120.0,
+      2100000.0
+    ]
+  },
+  "optical_bands": [
+    "blue",
+    "green",
+    "red",
+    "nir",
+    "swir1",
+    "swir2"
+  ],
+  "class_codes": {
+    "0": "unclassified",
+    "1": "water",
+    "2": "vegetation",
+    "3": "built_up",
+    "4": "bare_soil"
+  },
+  "reflectance": {
+    "water": [
+      0.06,
+      0.08,
+      0.05,
+      0.02,
+      0.01,
+      0.01
+    ],
+    "vegetation": [
+      0.03,
+      0.06,
+      0.04,
+      0.45,
+      0.2,
+      0.1
+    ],
+    "built_up": [
+      0.15,
+      0.16,
+      0.18,
+      0.22,
+      0.3,
+      0.28
+    ],
+    "bare_soil": [
+      0.12,
+      0.15,
+      0.2,
+      0.28,
+      0.32,
+      0.25
+    ]
+  },
+  "sar_backscatter_db": {
+    "water": -20.0,
+    "vegetation": -10.0,
+    "built_up": -3.5,
+    "bare_soil": -14.0
+  },
+  "ground_truth": {
+    "t1_class_pixels": {
+      "water": 12460,
+      "vegetation": 58515,
+      "built_up": 7826,
+      "bare_soil": 183343
+    },
+    "t2_class_pixels": {
+      "water": 8881,
+      "vegetation": 61781,
+      "built_up": 16910,
+      "bare_soil": 174572
+    },
+    "t1_class_area_m2": {
+      "water": 1246000.0,
+      "vegetation": 5851500.0,
+      "built_up": 782600.0,
+      "bare_soil": 18334300.0
+    },
+    "changed_pixels": 25320,
+    "changed_area_m2": 2532000.0,
+    "changed_fraction": 0.096588134765625
+  },
+  "known_changes": [
+    "urban expansion east of the existing built-up core (bare soil -> built-up)",
+    "new settlement replacing part of the north-west field (vegetation -> built-up)",
+    "reservoir shrinkage (water -> bare soil)",
+    "newly irrigated cropland in the south (bare soil -> vegetation)"
+  ],
+  "preferred_bitemporal_input": {
+    "path": "temporal_reliable/reservoir_t1_optical.tif + temporal_reliable/reservoir_t2_optical.tif",
+    "why": "Both dates are 6-band GeoTIFFs with an explicit CRS, transform and bounds on one identical grid, so registration is sub-pixel, ground areas are real, and the one conversion present is corroborated independently by both change detectors.",
+    "avoid": "PNG or otherwise ungeoreferenced input. It carries no CRS, transform or NIR band, so no vegetation or water index exists, change falls back to raw-band differencing, extent can only be reported in pixels, and no land-cover conversion can be attributed to the ground. See temporal_unreliable/ for that case."
+  },
+  "reliable_pair": {
+    "note": "The high-quality bi-temporal case: georeferenced, co-registered, with one spectrally unambiguous conversion (cropland and bare soil to water) that both the spectral and land-cover detectors resolve independently.",
+    "before": "temporal_reliable/reservoir_t1_optical.tif",
+    "after": "temporal_reliable/reservoir_t2_optical.tif",
+    "change_mask": "temporal_reliable/reservoir_change_gt.tif",
+    "known_change": "reservoir impoundment floods the valley floor",
+    "t1_class_pixels": {
+      "water": 17780,
+      "vegetation": 147768,
+      "built_up": 75336,
+      "bare_soil": 21260
+    },
+    "t2_class_pixels": {
+      "water": 28553,
+      "vegetation": 138345,
+      "built_up": 75336,
+      "bare_soil": 19910
+    },
+    "changed_pixels": 10773,
+    "changed_area_m2": 1077300.0,
+    "changed_fraction": 0.041095733642578125,
+    "transition_pixels": {
+      "vegetation->water": 9423,
+      "bare_soil->water": 1350
+    }
+  },
+  "unreliable_pair": {
+    "note": "The safety case: the same ground, but the later date is rotated 4 degrees and shifted about 60 px, and neither file carries a CRS or transform. The rotation is deliberate \u2014 translation-only co-registration cannot remove it \u2014 so the registration gate must fail and the pipeline must report the measured pixel difference while withholding any named land-cover conversion.",
+    "geotiff_pair": [
+      "temporal_unreliable/pair_t1.tif",
+      "temporal_unreliable/pair_t2.tif"
+    ],
+    "png_pair": [
+      "temporal_unreliable/pair_t1.png",
+      "temporal_unreliable/pair_t2.png"
+    ],
+    "defects": [
+      "no CRS and identity transform (not a map)",
+      "later date rotated 4 degrees about the centre and shifted (48, -36) px",
+      "PNG variant is 8-bit RGB only, so NDVI/NDWI/NDBI cannot be computed"
+    ],
+    "files": [
+      "pair_t1.tif",
+      "pair_t2.tif",
+      "pair_t1.png",
+      "pair_t2.png"
+    ]
+  },
+  "edge_cases": [
+    "empty.tif",
+    "corrupt.tif",
+    "not_an_image.pdf",
+    "different_crs.tif",
+    "different_res.tif",
+    "disjoint_extent.tif",
+    "rgb_only.tif",
+    "no_georeference.tif"
+  ]
+}

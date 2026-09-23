@@ -1,0 +1,375 @@
+{
+  "id": "SAT-2026-000104",
+  "request_id": "req-sat-2026-000104",
+  "created_at": "2026-08-26T09:12:00Z",
+  "status": "success",
+  "mode": "single_sar",
+  "title": "SAR backscatter analysis",
+  "note": "Single VV SAR scene: speckle filter + scattering-regime segmentation.",
+  "query": "Describe the SAR backscatter in this image.",
+  "task": "optical_sar_analysis",
+  "tool": "sar-backscatter-cv",
+  "tier": "classical",
+  "duration_ms": 186.08,
+  "answer": "The VV radar backscatter is predominantly diffuse scattering (92% of valid pixels, mean -13.0 dB). Regimes separated: smooth, diffuse, double bounce. Diffuse scattering is consistent with vegetation, bare soil, rough natural terrain \u2014 radar cannot decide between these from backscatter alone.",
+  "answer_withheld": null,
+  "confidence": {
+    "level": "high",
+    "score": 0.985,
+    "sufficient": true,
+    "limiting_factor": "warnings",
+    "reasons": [
+      "1 processing warning(s) were raised; see the result for details.",
+      "Input image quality scored 1.00 (dynamic range 0.66, saturation 0.00, nodata 0.00).",
+      "3 scattering regimes separated; weakest mode prominence 0.98 (floor 0.25).",
+      "Speckle filter 'lee-mmse' reduced local variability by 5.25x (estimated ENL 15.1)."
+    ],
+    "factors": [
+      {
+        "name": "regime_separation",
+        "value": 1.0,
+        "weight": 0.45,
+        "kind": "contributor",
+        "reason": "3 scattering regimes separated; weakest mode prominence 0.98 (floor 0.25)."
+      },
+      {
+        "name": "speckle_reduction",
+        "value": 1.0,
+        "weight": 0.2,
+        "kind": "contributor",
+        "reason": "Speckle filter 'lee-mmse' reduced local variability by 5.25x (estimated ENL 15.1)."
+      },
+      {
+        "name": "warnings",
+        "value": 0.85,
+        "weight": 0.1,
+        "kind": "contributor",
+        "reason": "1 processing warning(s) were raised; see the result for details."
+      },
+      {
+        "name": "input_quality",
+        "value": 1.0,
+        "weight": 0.25,
+        "kind": "contributor",
+        "reason": "Input image quality scored 1.00 (dynamic range 0.66, saturation 0.00, nodata 0.00)."
+      }
+    ]
+  },
+  "evidence": [
+    "Polarization: VV; threshold method: otsu-3class.",
+    "Smooth/specular boundary at -16.9 dB (mode prominence 0.98).",
+    "Double-bounce boundary at -7.0 dB (mode prominence 1.00).",
+    "Speckle filter: lee-mmse, window 7, estimated 15.1 looks, variability reduced 5.2x.",
+    "Radar backscatter measures surface roughness and geometry, not land cover. Moderate backscatter is reported as a single rough-surface class because vegetation and bare soil cannot be separated from single-polarisation data alone."
+  ],
+  "warnings": [
+    "Radar backscatter measures surface roughness and geometry, not land cover. Moderate backscatter is reported as a single rough-surface class because vegetation and bare soil cannot be separated from single-polarisation data alone."
+  ],
+  "data": {
+    "polarization": "VV",
+    "thresholds_db": {
+      "smooth": -16.94,
+      "bright": -6.95,
+      "method": "otsu-3class"
+    },
+    "mode_prominence": {
+      "smooth": 0.9812,
+      "bright": 0.998,
+      "threshold": 0.25
+    },
+    "separated_regimes": [
+      "smooth",
+      "diffuse",
+      "double_bounce"
+    ],
+    "regimes": [
+      {
+        "regime": "diffuse",
+        "candidate_surfaces": [
+          "vegetation",
+          "bare soil",
+          "rough natural terrain"
+        ],
+        "pixel_count": 241984,
+        "fraction": 0.9231,
+        "percentage": 92.31,
+        "area_m2": 24198400.0,
+        "mean_backscatter_db": -13.01
+      },
+      {
+        "regime": "smooth",
+        "candidate_surfaces": [
+          "calm open water",
+          "wet smooth ground",
+          "dry sand or bare tarmac",
+          "radar shadow"
+        ],
+        "pixel_count": 12347,
+        "fraction": 0.0471,
+        "percentage": 4.71,
+        "area_m2": 1234700.0,
+        "mean_backscatter_db": -19.75
+      },
+      {
+        "regime": "double_bounce",
+        "candidate_surfaces": [
+          "buildings or other vertical structures",
+          "metallic objects or vessels"
+        ],
+        "pixel_count": 7813,
+        "fraction": 0.0298,
+        "percentage": 2.98,
+        "area_m2": 781300.0,
+        "mean_backscatter_db": -3.8
+      }
+    ],
+    "speckle": {
+      "filter": "lee-mmse",
+      "window": 7,
+      "estimated_enl": 15.08,
+      "input_cv": 0.2575,
+      "output_cv": 0.0491,
+      "speckle_reduction_factor": 5.25,
+      "warnings": []
+    },
+    "histogram": {
+      "bins": [
+        -22.4913,
+        -21.8137,
+        -21.1361,
+        -20.4586,
+        -19.781,
+        -19.1034,
+        -18.4259,
+        -17.7483,
+        -17.0707,
+        -16.3932,
+        -15.7156,
+        -15.0381,
+        -14.3605,
+        -13.6829,
+        -13.0054,
+        -12.3278,
+        -11.6502,
+        -10.9727,
+        -10.2951,
+        -9.6175,
+        -8.94,
+        -8.2624,
+        -7.5849,
+        -6.9073,
+        -6.2297,
+        -5.5522,
+        -4.8746,
+        -4.197,
+        -3.5195,
+        -2.8419,
+        -2.1643,
+        -1.4868,
+        -0.8092
+      ],
+      "counts": [
+        12,
+        118,
+        836,
+        6847,
+        2746,
+        851,
+        583,
+        321,
+        178,
+        242,
+        951,
+        18018,
+        137198,
+        21512,
+        2759,
+        1241,
+        1426,
+        10745,
+        43183,
+        4282,
+        239,
+        30,
+        17,
+        64,
+        186,
+        486,
+        980,
+        3168,
+        2531,
+        296,
+        79,
+        19
+      ],
+      "mean": -13.0554,
+      "std": 2.7367,
+      "p05": -15.306,
+      "p95": -9.6443
+    },
+    "warnings": [
+      "Radar backscatter measures surface roughness and geometry, not land cover. Moderate backscatter is reported as a single rough-surface class because vegetation and bare soil cannot be separated from single-polarisation data alone."
+    ]
+  },
+  "inputs": [
+    {
+      "filename": "scene_sar_vv.tif",
+      "driver": "GTiff",
+      "width": 512,
+      "height": 512,
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32643",
+      "crs_epsg": 32643,
+      "transform": [
+        10.0,
+        0.0,
+        700000.0,
+        0.0,
+        -10.0,
+        2100000.0
+      ],
+      "bounds": [
+        700000.0,
+        2094880.0,
+        705120.0,
+        2100000.0
+      ],
+      "nodata": null,
+      "pixel_size": [
+        10.0,
+        10.0
+      ],
+      "georeferenced": true,
+      "band_descriptions": [
+        "vv"
+      ],
+      "decimation": 1.0,
+      "modality": "sar",
+      "band_roles": [
+        "vv"
+      ],
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      }
+    }
+  ],
+  "trace": [
+    {
+      "step": "classify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Query routed to the optical_sar_analysis task by deterministic keyword/shape rules (1 image(s), modalities ['sar']).",
+      "parameters": {
+        "task": "optical_sar_analysis"
+      },
+      "warnings": []
+    },
+    {
+      "step": "validate",
+      "tool": "sar-backscatter-cv",
+      "status": "ok",
+      "duration_ms": 0.01,
+      "summary": "Inputs accepted: modality and image count satisfy the tool's preconditions.",
+      "parameters": {
+        "images": 1,
+        "modalities": [
+          "sar"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "step": "preprocess",
+      "tool": "sar-backscatter-cv",
+      "status": "ok",
+      "duration_ms": 20.54,
+      "summary": "Inputs inspected and readied (quality assessed; any pair aligned to a common grid).",
+      "parameters": {
+        "input_quality": 1.0
+      },
+      "warnings": []
+    },
+    {
+      "step": "execute",
+      "tool": "sar-backscatter-cv",
+      "status": "ok",
+      "duration_ms": 165.31,
+      "summary": "Ran sar-backscatter-cv (classical tier) over the prepared raster(s).",
+      "parameters": {
+        "tier": "classical"
+      },
+      "warnings": []
+    },
+    {
+      "step": "score",
+      "tool": "sar-backscatter-cv",
+      "status": "warning",
+      "duration_ms": 0.22,
+      "summary": "Confidence computed from measured evidence and the answer phrased from those measurements.",
+      "parameters": {
+        "confidence": "high",
+        "score": 0.984997615814209
+      },
+      "warnings": []
+    },
+    {
+      "step": "verify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Evidence sufficient to release the answer.",
+      "parameters": {
+        "sufficient": true
+      },
+      "warnings": []
+    }
+  ],
+  "artifacts": [
+    {
+      "kind": "base",
+      "label": "Input image",
+      "url": "/fixtures/SAT-2026-000104/base.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": []
+    },
+    {
+      "kind": "regime_map",
+      "label": "SAR scattering regimes",
+      "url": "/fixtures/SAT-2026-000104/overlay.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": [
+        {
+          "label": "Smooth",
+          "color": "#2166cd",
+          "key": "smooth"
+        },
+        {
+          "label": "Diffuse",
+          "color": "#2e9a3e",
+          "key": "diffuse"
+        },
+        {
+          "label": "Double bounce",
+          "color": "#d6602d",
+          "key": "double_bounce"
+        }
+      ]
+    }
+  ],
+  "fixture": true
+}

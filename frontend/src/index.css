@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 210 85% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 45%;
+
+    --accent: 210 40% 94%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 32 95% 44%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 200 90% 45%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 210 85% 45%;
+
+    --radius: 0.65rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-300;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  .vision-card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .vision-sidebar {
+    @apply border-r border-slate-200 bg-white;
+  }
+
+  .vision-input {
+    @apply rounded-lg border border-slate-200 bg-white
+      outline-none transition
+      focus:border-primary focus:ring-2 focus:ring-primary/10;
+  }
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Leaflet map */
+
+.leaflet-container {
+  @apply bg-slate-100 font-sans;
+  min-height: 100%;
+}
+
+.leaflet-control-attribution {
+  @apply bg-white/90 text-slate-500;
+}
+
+.leaflet-bar a {
+  @apply border-slate-200 bg-white text-slate-700;
+}
+
+.leaflet-bar a:hover {
+  @apply bg-slate-50;
+}

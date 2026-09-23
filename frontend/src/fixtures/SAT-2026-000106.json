@@ -1,0 +1,658 @@
+{
+  "id": "SAT-2026-000106",
+  "request_id": "req-sat-2026-000106",
+  "created_at": "2026-08-26T09:18:00Z",
+  "status": "success",
+  "mode": "bitemporal_pair",
+  "title": "Bi-temporal change analysis",
+  "note": "Two optical dates: CVA \u222a class disagreement, with agreement carried per transition.",
+  "query": "What changed between the two dates?",
+  "task": "change_detection",
+  "tool": "change-cva-cv",
+  "tier": "classical",
+  "duration_ms": 623.11,
+  "answer": "Change was detected across 10.7% of the valid area (about 2.81 km\u00b2). The dominant transition is bare soil to vegetation, covering 33% of the changed area. 66% of the detected change is corroborated by both detectors.",
+  "answer_withheld": null,
+  "confidence": {
+    "level": "medium",
+    "score": 0.6577,
+    "sufficient": true,
+    "limiting_factor": "evidence_strength",
+    "reasons": [
+      "Change evidence: magnitude bimodality 0.89 (two-population threshold 0.56), 66% of detected change corroborated by both detectors.",
+      "Image co-registration scored 0.78 (offset 0.08 px, structural NCC 0.72).",
+      "1 processing warning(s) were raised; see the result for details.",
+      "The change threshold separated the magnitude histogram with quality 0.90 (method: otsu).",
+      "Largest measured transition (bare_soil to vegetation) is corroborated on 98% of its pixels; the named conversion is reported.",
+      "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00)."
+    ],
+    "factors": [
+      {
+        "name": "evidence_strength",
+        "value": 0.6577,
+        "weight": 0.45,
+        "kind": "gate",
+        "reason": "Change evidence: magnitude bimodality 0.89 (two-population threshold 0.56), 66% of detected change corroborated by both detectors."
+      },
+      {
+        "name": "registration",
+        "value": 0.7807,
+        "weight": 0.2,
+        "kind": "gate",
+        "reason": "Image co-registration scored 0.78 (offset 0.08 px, structural NCC 0.72)."
+      },
+      {
+        "name": "threshold_quality",
+        "value": 0.9035,
+        "weight": 0.25,
+        "kind": "contributor",
+        "reason": "The change threshold separated the magnitude histogram with quality 0.90 (method: otsu)."
+      },
+      {
+        "name": "warnings",
+        "value": 0.85,
+        "weight": 0.1,
+        "kind": "contributor",
+        "reason": "1 processing warning(s) were raised; see the result for details."
+      },
+      {
+        "name": "semantic_attribution",
+        "value": 0.976,
+        "weight": 0.15,
+        "kind": "contributor",
+        "reason": "Largest measured transition (bare_soil to vegetation) is corroborated on 98% of its pixels; the named conversion is reported."
+      },
+      {
+        "name": "input_quality",
+        "value": 0.9895,
+        "weight": 0.25,
+        "kind": "contributor",
+        "reason": "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00)."
+      }
+    ]
+  },
+  "evidence": [
+    "Method: cva-spectral-indices; detectors: spectral-cva, land-cover-disagreement.",
+    "Change threshold 0.2879 (otsu); magnitude bimodality 0.89.",
+    "Registration offset 0.08 px (quality 0.78).",
+    "Semantic-claim gate: passed (needs offset <= 2.0 px, structural agreement >= 0.35, registration quality >= 0.45).",
+    "66% of 28080 changed pixels are corroborated by both detectors.",
+    "Largest measured transition bare soil to vegetation (98% spectral agreement, reportable as a semantic finding).",
+    "About 33% of the detected change rests on a difference between the two land-cover classifications that the spectral measurement does not corroborate. Conversions between built-up land and bare ground are the usual reason, because the two are hard to separate spectrally. Treat the uncorroborated portion as substantially less certain."
+  ],
+  "warnings": [
+    "About 33% of the detected change rests on a difference between the two land-cover classifications that the spectral measurement does not corroborate. Conversions between built-up land and bare ground are the usual reason, because the two are hard to separate spectrally. Treat the uncorroborated portion as substantially less certain."
+  ],
+  "data": {
+    "method": "cva-spectral-indices",
+    "detectors": [
+      "spectral-cva",
+      "land-cover-disagreement"
+    ],
+    "features_used": [
+      "ndvi",
+      "mndwi",
+      "ndbi"
+    ],
+    "threshold": 0.28791,
+    "threshold_method": "otsu",
+    "changed_pixels": 28080,
+    "valid_pixels": 262144,
+    "changed_fraction": 0.1071,
+    "changed_percentage": 10.71,
+    "changed_area_m2": 2808000.0,
+    "bimodality": 0.8866,
+    "threshold_quality": 0.9035,
+    "evidence_split": {
+      "corroborated_pixels": 18468,
+      "spectral_only_pixels": 267,
+      "class_only_pixels": 9345,
+      "corroborated_fraction": 0.6577
+    },
+    "dominant_transition": {
+      "from": "bare_soil",
+      "to": "vegetation",
+      "change_type": "vegetation_gain",
+      "pixel_count": 9316,
+      "fraction_of_change": 0.3318,
+      "percentage_of_change": 33.18,
+      "area_m2": 931600.0,
+      "mean_magnitude": 0.4661,
+      "spectral_agreement": 0.976,
+      "semantically_reportable": true
+    },
+    "transitions": [
+      {
+        "from": "bare_soil",
+        "to": "vegetation",
+        "change_type": "vegetation_gain",
+        "pixel_count": 9316,
+        "fraction_of_change": 0.3318,
+        "percentage_of_change": 33.18,
+        "area_m2": 931600.0,
+        "mean_magnitude": 0.4661,
+        "spectral_agreement": 0.976,
+        "semantically_reportable": true
+      },
+      {
+        "from": "bare_soil",
+        "to": "built_up",
+        "change_type": "urban_expansion",
+        "pixel_count": 6530,
+        "fraction_of_change": 0.2325,
+        "percentage_of_change": 23.25,
+        "area_m2": 653000.0,
+        "mean_magnitude": 0.0877,
+        "spectral_agreement": 0.0,
+        "semantically_reportable": false
+      },
+      {
+        "from": "vegetation",
+        "to": "built_up",
+        "change_type": "urban_expansion",
+        "pixel_count": 4338,
+        "fraction_of_change": 0.1545,
+        "percentage_of_change": 15.45,
+        "area_m2": 433800.0,
+        "mean_magnitude": 0.5387,
+        "spectral_agreement": 0.9986,
+        "semantically_reportable": true
+      },
+      {
+        "from": "water",
+        "to": "bare_soil",
+        "change_type": "water_loss",
+        "pixel_count": 3478,
+        "fraction_of_change": 0.1239,
+        "percentage_of_change": 12.39,
+        "area_m2": 347800.0,
+        "mean_magnitude": 0.7514,
+        "spectral_agreement": 0.9997,
+        "semantically_reportable": true
+      },
+      {
+        "from": "built_up",
+        "to": "bare_soil",
+        "change_type": "urban_loss",
+        "pixel_count": 2254,
+        "fraction_of_change": 0.0803,
+        "percentage_of_change": 8.03,
+        "area_m2": 225400.0,
+        "mean_magnitude": 0.0627,
+        "spectral_agreement": 0.0,
+        "semantically_reportable": false
+      },
+      {
+        "from": "vegetation",
+        "to": "bare_soil",
+        "change_type": "vegetation_loss",
+        "pixel_count": 1442,
+        "fraction_of_change": 0.0514,
+        "percentage_of_change": 5.14,
+        "area_m2": 144200.0,
+        "mean_magnitude": 0.4827,
+        "spectral_agreement": 0.9993,
+        "semantically_reportable": true
+      },
+      {
+        "from": "bare_soil",
+        "to": "bare_soil",
+        "change_type": "spectral_only",
+        "pixel_count": 276,
+        "fraction_of_change": 0.0098,
+        "percentage_of_change": 0.98,
+        "area_m2": 27600.0,
+        "mean_magnitude": 0.1494,
+        "spectral_agreement": 0.3478,
+        "semantically_reportable": false
+      },
+      {
+        "from": "vegetation",
+        "to": "vegetation",
+        "change_type": "spectral_only",
+        "pixel_count": 142,
+        "fraction_of_change": 0.0051,
+        "percentage_of_change": 0.51,
+        "area_m2": 14200.0,
+        "mean_magnitude": 0.3699,
+        "spectral_agreement": 1.0,
+        "semantically_reportable": true
+      },
+      {
+        "from": "built_up",
+        "to": "built_up",
+        "change_type": "spectral_only",
+        "pixel_count": 141,
+        "fraction_of_change": 0.005,
+        "percentage_of_change": 0.5,
+        "area_m2": 14100.0,
+        "mean_magnitude": 0.0832,
+        "spectral_agreement": 0.0,
+        "semantically_reportable": false
+      },
+      {
+        "from": "built_up",
+        "to": "vegetation",
+        "change_type": "vegetation_gain",
+        "pixel_count": 68,
+        "fraction_of_change": 0.0024,
+        "percentage_of_change": 0.24,
+        "area_m2": 6800.0,
+        "mean_magnitude": 0.4863,
+        "spectral_agreement": 0.9265,
+        "semantically_reportable": true
+      },
+      {
+        "from": "water",
+        "to": "water",
+        "change_type": "spectral_only",
+        "pixel_count": 58,
+        "fraction_of_change": 0.0021,
+        "percentage_of_change": 0.21,
+        "area_m2": 5800.0,
+        "mean_magnitude": 0.4572,
+        "spectral_agreement": 1.0,
+        "semantically_reportable": true
+      },
+      {
+        "from": "water",
+        "to": "vegetation",
+        "change_type": "vegetation_gain",
+        "pixel_count": 33,
+        "fraction_of_change": 0.0012,
+        "percentage_of_change": 0.12,
+        "area_m2": 3300.0,
+        "mean_magnitude": 0.9393,
+        "spectral_agreement": 1.0,
+        "semantically_reportable": true
+      },
+      {
+        "from": "bare_soil",
+        "to": "water",
+        "change_type": "water_gain",
+        "pixel_count": 3,
+        "fraction_of_change": 0.0001,
+        "percentage_of_change": 0.01,
+        "area_m2": 300.0,
+        "mean_magnitude": 0.1623,
+        "spectral_agreement": 0.3333,
+        "semantically_reportable": false
+      },
+      {
+        "from": "built_up",
+        "to": "water",
+        "change_type": "water_gain",
+        "pixel_count": 1,
+        "fraction_of_change": 0.0,
+        "percentage_of_change": 0.0,
+        "area_m2": 100.0,
+        "mean_magnitude": 0.1053,
+        "spectral_agreement": 0.0,
+        "semantically_reportable": false
+      }
+    ],
+    "class_deltas": [
+      {
+        "class": "bare_soil",
+        "pixels_before": 179623,
+        "pixels_after": 170880,
+        "pixel_delta": -8743,
+        "area_m2_before": 17962300.0,
+        "area_m2_after": 17088000.0,
+        "area_m2_delta": -874300.0,
+        "relative_delta": -0.0487
+      },
+      {
+        "class": "built_up",
+        "pixels_before": 11305,
+        "pixels_after": 19825,
+        "pixel_delta": 8520,
+        "area_m2_before": 1130500.0,
+        "area_m2_after": 1982500.0,
+        "area_m2_delta": 852000.0,
+        "relative_delta": 0.7536
+      },
+      {
+        "class": "vegetation",
+        "pixels_before": 59644,
+        "pixels_after": 63336,
+        "pixel_delta": 3692,
+        "area_m2_before": 5964400.0,
+        "area_m2_after": 6333600.0,
+        "area_m2_delta": 369200.0,
+        "relative_delta": 0.0619
+      },
+      {
+        "class": "water",
+        "pixels_before": 11572,
+        "pixels_after": 8103,
+        "pixel_delta": -3469,
+        "area_m2_before": 1157200.0,
+        "area_m2_after": 810300.0,
+        "area_m2_delta": -346900.0,
+        "relative_delta": -0.2998
+      }
+    ],
+    "index_deltas": [
+      {
+        "index": "ndvi",
+        "mean_before": 0.2875,
+        "mean_after": 0.3017,
+        "mean_delta_overall": 0.0142,
+        "mean_delta_in_change": 0.1331,
+        "increase_fraction": 0.5874,
+        "direction": "mixed"
+      },
+      {
+        "index": "mndwi",
+        "mean_before": -0.3478,
+        "mean_after": -0.3629,
+        "mean_delta_overall": -0.0152,
+        "mean_delta_in_change": -0.1426,
+        "increase_fraction": 0.4183,
+        "direction": "mixed"
+      },
+      {
+        "index": "ndbi",
+        "mean_before": -0.0488,
+        "mean_after": -0.0463,
+        "mean_delta_overall": 0.0025,
+        "mean_delta_in_change": 0.0214,
+        "increase_fraction": 0.553,
+        "direction": "mixed"
+      }
+    ],
+    "registration": {
+      "offset_x_px": -0.08,
+      "offset_y_px": 0.003,
+      "offset_magnitude_px": 0.08,
+      "phase_response": 0.225,
+      "ncc": 0.7171,
+      "score": 0.7807,
+      "warnings": []
+    },
+    "registration_gate": {
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "offset_magnitude_px": 0.08,
+        "ncc": 0.7171,
+        "score": 0.7807
+      },
+      "thresholds": {
+        "max_offset_px": 2.0,
+        "min_ncc": 0.35,
+        "min_score": 0.45
+      }
+    },
+    "semantic": {
+      "supported": true,
+      "min_spectral_agreement": 0.6,
+      "transition": {
+        "from": "bare_soil",
+        "to": "vegetation",
+        "change_type": "vegetation_gain",
+        "pixel_count": 9316,
+        "fraction_of_change": 0.3318,
+        "percentage_of_change": 33.18,
+        "area_m2": 931600.0,
+        "mean_magnitude": 0.4661,
+        "spectral_agreement": 0.976,
+        "semantically_reportable": true
+      },
+      "withheld_reason": null
+    },
+    "warnings": [
+      "About 33% of the detected change rests on a difference between the two land-cover classifications that the spectral measurement does not corroborate. Conversions between built-up land and bare ground are the usual reason, because the two are hard to separate spectrally. Treat the uncorroborated portion as substantially less certain."
+    ],
+    "coregistration": {
+      "method": "none",
+      "applied": false,
+      "shift_x_px": 0.0,
+      "shift_y_px": 0.0,
+      "initial": {
+        "offset_x_px": -0.08,
+        "offset_y_px": 0.003,
+        "offset_magnitude_px": 0.08,
+        "phase_response": 0.225,
+        "ncc": 0.7171,
+        "score": 0.7807,
+        "warnings": []
+      },
+      "final": {
+        "offset_x_px": -0.08,
+        "offset_y_px": 0.003,
+        "offset_magnitude_px": 0.08,
+        "phase_response": 0.225,
+        "ncc": 0.7171,
+        "score": 0.7807,
+        "warnings": []
+      },
+      "score_improvement": 0.0,
+      "candidates": [
+        {
+          "method": "none",
+          "score": 0.7807
+        }
+      ],
+      "warnings": []
+    }
+  },
+  "inputs": [
+    {
+      "filename": "scene_t1_optical.tif",
+      "driver": "GTiff",
+      "width": 512,
+      "height": 512,
+      "bands": 6,
+      "dtype": "uint16",
+      "crs": "EPSG:32643",
+      "crs_epsg": 32643,
+      "transform": [
+        10.0,
+        0.0,
+        700000.0,
+        0.0,
+        -10.0,
+        2100000.0
+      ],
+      "bounds": [
+        700000.0,
+        2094880.0,
+        705120.0,
+        2100000.0
+      ],
+      "nodata": null,
+      "pixel_size": [
+        10.0,
+        10.0
+      ],
+      "georeferenced": true,
+      "band_descriptions": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "decimation": 1.0,
+      "modality": "optical",
+      "band_roles": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      }
+    },
+    {
+      "filename": "scene_t2_optical.tif",
+      "driver": "GTiff",
+      "width": 512,
+      "height": 512,
+      "bands": 6,
+      "dtype": "uint16",
+      "crs": "EPSG:32643",
+      "crs_epsg": 32643,
+      "transform": [
+        10.0,
+        0.0,
+        700000.0,
+        0.0,
+        -10.0,
+        2100000.0
+      ],
+      "bounds": [
+        700000.0,
+        2094880.0,
+        705120.0,
+        2100000.0
+      ],
+      "nodata": null,
+      "pixel_size": [
+        10.0,
+        10.0
+      ],
+      "georeferenced": true,
+      "band_descriptions": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "decimation": 1.0,
+      "modality": "optical",
+      "band_roles": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      }
+    }
+  ],
+  "trace": [
+    {
+      "step": "classify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Query routed to the change_detection task by deterministic keyword/shape rules (2 image(s), modalities ['optical', 'optical']).",
+      "parameters": {
+        "task": "change_detection"
+      },
+      "warnings": []
+    },
+    {
+      "step": "validate",
+      "tool": "change-cva-cv",
+      "status": "ok",
+      "duration_ms": 0.02,
+      "summary": "Inputs accepted: modality and image count satisfy the tool's preconditions.",
+      "parameters": {
+        "images": 2,
+        "modalities": [
+          "optical",
+          "optical"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "step": "preprocess",
+      "tool": "change-cva-cv",
+      "status": "ok",
+      "duration_ms": 106.76,
+      "summary": "Inputs inspected and readied (quality assessed; any pair aligned to a common grid).",
+      "parameters": {
+        "input_quality": 0.9895,
+        "registration_offset_px": null
+      },
+      "warnings": []
+    },
+    {
+      "step": "execute",
+      "tool": "change-cva-cv",
+      "status": "ok",
+      "duration_ms": 515.78,
+      "summary": "Ran change-cva-cv (classical tier) over the prepared raster(s).",
+      "parameters": {
+        "tier": "classical"
+      },
+      "warnings": []
+    },
+    {
+      "step": "score",
+      "tool": "change-cva-cv",
+      "status": "warning",
+      "duration_ms": 0.55,
+      "summary": "Confidence computed from measured evidence and the answer phrased from those measurements.",
+      "parameters": {
+        "confidence": "medium",
+        "score": 0.6576923076923077
+      },
+      "warnings": []
+    },
+    {
+      "step": "verify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Evidence sufficient to release the answer.",
+      "parameters": {
+        "sufficient": true
+      },
+      "warnings": []
+    }
+  ],
+  "artifacts": [
+    {
+      "kind": "base",
+      "label": "Input image",
+      "url": "/fixtures/SAT-2026-000106/base.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": []
+    },
+    {
+      "kind": "change_mask",
+      "label": "Detected change",
+      "url": "/fixtures/SAT-2026-000106/overlay.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": [
+        {
+          "label": "Changed",
+          "color": "#dc2878",
+          "key": "change"
+        }
+      ]
+    }
+  ],
+  "fixture": true
+}

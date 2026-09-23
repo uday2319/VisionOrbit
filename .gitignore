@@ -1,0 +1,58 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# JavaScript dependencies and build output
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local
+*.secret
+*.pem
+*.key
+*.p12
+*.pfx
+
+# IDE and operating-system files
+.vscode/
+.idea/
+.claude/settings.local.json
+*.swp
+.DS_Store
+Thumbs.db
+
+# Runtime data and generated local files
+storage/uploads/
+storage/previews/
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated reports and local ML artifacts
+ml/checkpoints/*
+!ml/checkpoints/.gitkeep
+ml/datasets/processed/
+# Downloaded open datasets. EuroSAT RGB is ~94 MB / 27000 files; it is fetched on
+# demand by `python -m ml.adaptation.prepare_data`, never committed.
+ml/datasets/eurosat_raw/
+reports/*.json
+reports/*.html
+
+# Temporary files
+*.log
+tmp/
+temp/
+storage/artifacts/

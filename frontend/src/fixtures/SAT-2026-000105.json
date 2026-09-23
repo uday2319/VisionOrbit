@@ -1,0 +1,473 @@
+{
+  "id": "SAT-2026-000105",
+  "request_id": "req-sat-2026-000105",
+  "created_at": "2026-08-26T09:15:00Z",
+  "status": "success",
+  "mode": "optical_sar_pair",
+  "title": "Optical + SAR fusion",
+  "note": "Decision-level fusion: radar arbitrates the built-up/bare-soil axis (\u00a74.7).",
+  "query": "Combine the optical and radar images to map land cover.",
+  "task": "optical_sar_analysis",
+  "tool": "fusion-decision-cv",
+  "tier": "classical",
+  "duration_ms": 465.2,
+  "answer": "Combining optical and radar evidence, the scene is predominantly bare soil (70% of classified pixels). Both sensors independently agree on 98% of the classified area. The largest sensor disagreement (1.4% of the scene) was resolved by radar in favour of bare soil.",
+  "answer_withheld": null,
+  "confidence": {
+    "level": "high",
+    "score": 0.926,
+    "sufficient": true,
+    "limiting_factor": "registration",
+    "reasons": [
+      "Image co-registration scored 0.68 (offset 0.03 px, structural NCC 0.37).",
+      "1 processing warning(s) were raised; see the result for details.",
+      "98% of the classified scene was supported by both sensors; 98% agreement where both observed the same pixel.",
+      "Optical and SAR agreed on 98% of the pixels both sensors classified.",
+      "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00)."
+    ],
+    "factors": [
+      {
+        "name": "corroboration",
+        "value": 0.9843,
+        "weight": 0.45,
+        "kind": "gate",
+        "reason": "98% of the classified scene was supported by both sensors; 98% agreement where both observed the same pixel."
+      },
+      {
+        "name": "sensor_agreement",
+        "value": 0.9843,
+        "weight": 0.25,
+        "kind": "contributor",
+        "reason": "Optical and SAR agreed on 98% of the pixels both sensors classified."
+      },
+      {
+        "name": "registration",
+        "value": 0.6809,
+        "weight": 0.2,
+        "kind": "contributor",
+        "reason": "Image co-registration scored 0.68 (offset 0.03 px, structural NCC 0.37)."
+      },
+      {
+        "name": "warnings",
+        "value": 0.85,
+        "weight": 0.1,
+        "kind": "contributor",
+        "reason": "1 processing warning(s) were raised; see the result for details."
+      },
+      {
+        "name": "input_quality",
+        "value": 0.9895,
+        "weight": 0.25,
+        "kind": "contributor",
+        "reason": "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00)."
+      }
+    ]
+  },
+  "evidence": [
+    "Method: decision-level-optical-sar.",
+    "Sensor agreement over jointly-classified pixels: 98.4%; corroborated 98.4% of the fused map.",
+    "Registration offset 0.03 px (quality 0.68).",
+    "Radar separated regimes: smooth, diffuse, double bounce.",
+    "Conflict: optical built up vs radar diffuse over 3792 px resolved to bare soil (by sar).",
+    "Conflict: optical bare soil vs radar double bounce over 298 px resolved to built up (by sar).",
+    "Radar backscatter measures surface roughness and geometry, not land cover. Moderate backscatter is reported as a single rough-surface class because vegetation and bare soil cannot be separated from single-polarisation data alone."
+  ],
+  "warnings": [
+    "Radar backscatter measures surface roughness and geometry, not land cover. Moderate backscatter is reported as a single rough-surface class because vegetation and bare soil cannot be separated from single-polarisation data alone."
+  ],
+  "data": {
+    "method": "decision-level-optical-sar",
+    "classes": [
+      {
+        "class": "bare_soil",
+        "pixel_count": 183123,
+        "fraction": 0.6986,
+        "percentage": 69.86,
+        "area_m2": 18312300.0,
+        "corroborated_fraction": 0.9793,
+        "evidence": {
+          "both": 179325,
+          "conflict": 3798
+        }
+      },
+      {
+        "class": "vegetation",
+        "pixel_count": 59636,
+        "fraction": 0.2275,
+        "percentage": 22.75,
+        "area_m2": 5963600.0,
+        "corroborated_fraction": 1.0,
+        "evidence": {
+          "both": 59636
+        }
+      },
+      {
+        "class": "water",
+        "pixel_count": 11572,
+        "fraction": 0.0441,
+        "percentage": 4.41,
+        "area_m2": 1157200.0,
+        "corroborated_fraction": 0.9979,
+        "evidence": {
+          "both": 11548,
+          "conflict": 24
+        }
+      },
+      {
+        "class": "built_up",
+        "pixel_count": 7813,
+        "fraction": 0.0298,
+        "percentage": 2.98,
+        "area_m2": 781300.0,
+        "corroborated_fraction": 0.9608,
+        "evidence": {
+          "both": 7507,
+          "conflict": 306
+        }
+      }
+    ],
+    "dominant_class": "bare_soil",
+    "agreement_fraction": 0.9843,
+    "corroborated_fraction": 0.9843,
+    "evidence_breakdown": {
+      "both": 258016,
+      "conflict": 4128
+    },
+    "evidence_fractions": {
+      "both": 0.9843,
+      "conflict": 0.0157
+    },
+    "conflicts": [
+      {
+        "optical_class": "built_up",
+        "sar_regime": "diffuse",
+        "pixel_count": 3792,
+        "fraction": 0.01447,
+        "area_m2": 379200.0,
+        "resolved_as": "bare_soil",
+        "arbiter": "sar",
+        "reason": "The optical bands suggested built-up land from brightness and surface texture, but radar measured no double-bounce return, so there is no vertical structure here. The built-up claim is withdrawn and the surface is reported as bare or unvegetated ground.",
+        "radar_candidate_surfaces": [
+          "vegetation",
+          "bare soil",
+          "rough natural terrain"
+        ]
+      },
+      {
+        "optical_class": "bare_soil",
+        "sar_regime": "double_bounce",
+        "pixel_count": 298,
+        "fraction": 0.00114,
+        "area_m2": 29800.0,
+        "resolved_as": "built_up",
+        "arbiter": "sar",
+        "reason": "Radar measured a double-bounce return here, which is the geometric signature of a vertical surface meeting the ground. Nothing in the optical bands measures geometry, so the radar reading decides this.",
+        "radar_candidate_surfaces": [
+          "buildings or other vertical structures",
+          "metallic objects or vessels"
+        ]
+      },
+      {
+        "optical_class": "water",
+        "sar_regime": "diffuse",
+        "pixel_count": 24,
+        "fraction": 9e-05,
+        "area_m2": 2400.0,
+        "resolved_as": "water",
+        "arbiter": "optical",
+        "reason": "Radar cannot separate the surfaces consistent with this return, so the optical classification stands. The disagreement is reported rather than resolved.",
+        "radar_candidate_surfaces": [
+          "vegetation",
+          "bare soil",
+          "rough natural terrain"
+        ]
+      },
+      {
+        "optical_class": "vegetation",
+        "sar_regime": "double_bounce",
+        "pixel_count": 8,
+        "fraction": 3e-05,
+        "area_m2": 800.0,
+        "resolved_as": "built_up",
+        "arbiter": "sar",
+        "reason": "Radar measured a double-bounce return here, which is the geometric signature of a vertical surface meeting the ground. Nothing in the optical bands measures geometry, so the radar reading decides this.",
+        "radar_candidate_surfaces": [
+          "buildings or other vertical structures",
+          "metallic objects or vessels"
+        ]
+      },
+      {
+        "optical_class": "built_up",
+        "sar_regime": "smooth",
+        "pixel_count": 6,
+        "fraction": 2e-05,
+        "area_m2": 600.0,
+        "resolved_as": "bare_soil",
+        "arbiter": "sar",
+        "reason": "The optical bands suggested built-up land from brightness and surface texture, but radar measured no double-bounce return, so there is no vertical structure here. The built-up claim is withdrawn and the surface is reported as bare or unvegetated ground.",
+        "radar_candidate_surfaces": [
+          "calm open water",
+          "wet smooth ground",
+          "dry sand or bare tarmac",
+          "radar shadow"
+        ]
+      }
+    ],
+    "registration": {
+      "offset_x_px": -0.007,
+      "offset_y_px": 0.034,
+      "offset_magnitude_px": 0.034,
+      "phase_response": 0.3616,
+      "ncc": 0.3668,
+      "score": 0.6809,
+      "warnings": []
+    },
+    "optical_only": {
+      "method": "spectral-indices",
+      "indices_used": [
+        "mndwi",
+        "ndvi",
+        "ndbi"
+      ],
+      "classes": [
+        "bare_soil",
+        "vegetation",
+        "water",
+        "built_up"
+      ]
+    },
+    "sar_only": {
+      "polarization": "VV",
+      "separated_regimes": [
+        "smooth",
+        "diffuse",
+        "double_bounce"
+      ]
+    },
+    "warnings": [
+      "Radar backscatter measures surface roughness and geometry, not land cover. Moderate backscatter is reported as a single rough-surface class because vegetation and bare soil cannot be separated from single-polarisation data alone."
+    ]
+  },
+  "inputs": [
+    {
+      "filename": "scene_optical.tif",
+      "driver": "GTiff",
+      "width": 512,
+      "height": 512,
+      "bands": 6,
+      "dtype": "uint16",
+      "crs": "EPSG:32643",
+      "crs_epsg": 32643,
+      "transform": [
+        10.0,
+        0.0,
+        700000.0,
+        0.0,
+        -10.0,
+        2100000.0
+      ],
+      "bounds": [
+        700000.0,
+        2094880.0,
+        705120.0,
+        2100000.0
+      ],
+      "nodata": null,
+      "pixel_size": [
+        10.0,
+        10.0
+      ],
+      "georeferenced": true,
+      "band_descriptions": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "decimation": 1.0,
+      "modality": "optical",
+      "band_roles": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      }
+    },
+    {
+      "filename": "scene_sar_vv.tif",
+      "driver": "GTiff",
+      "width": 512,
+      "height": 512,
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32643",
+      "crs_epsg": 32643,
+      "transform": [
+        10.0,
+        0.0,
+        700000.0,
+        0.0,
+        -10.0,
+        2100000.0
+      ],
+      "bounds": [
+        700000.0,
+        2094880.0,
+        705120.0,
+        2100000.0
+      ],
+      "nodata": null,
+      "pixel_size": [
+        10.0,
+        10.0
+      ],
+      "georeferenced": true,
+      "band_descriptions": [
+        "vv"
+      ],
+      "decimation": 1.0,
+      "modality": "sar",
+      "band_roles": [
+        "vv"
+      ],
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      }
+    }
+  ],
+  "trace": [
+    {
+      "step": "classify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.01,
+      "summary": "Query routed to the optical_sar_analysis task by deterministic keyword/shape rules (2 image(s), modalities ['optical', 'sar']).",
+      "parameters": {
+        "task": "optical_sar_analysis"
+      },
+      "warnings": []
+    },
+    {
+      "step": "validate",
+      "tool": "fusion-decision-cv",
+      "status": "ok",
+      "duration_ms": 0.01,
+      "summary": "Inputs accepted: modality and image count satisfy the tool's preconditions.",
+      "parameters": {
+        "images": 2,
+        "modalities": [
+          "optical",
+          "sar"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "step": "preprocess",
+      "tool": "fusion-decision-cv",
+      "status": "ok",
+      "duration_ms": 48.01,
+      "summary": "Inputs inspected and readied (quality assessed; any pair aligned to a common grid).",
+      "parameters": {
+        "input_quality": 0.9895,
+        "registration_offset_px": null
+      },
+      "warnings": []
+    },
+    {
+      "step": "execute",
+      "tool": "fusion-decision-cv",
+      "status": "ok",
+      "duration_ms": 415.41,
+      "summary": "Ran fusion-decision-cv (classical tier) over the prepared raster(s).",
+      "parameters": {
+        "tier": "classical"
+      },
+      "warnings": []
+    },
+    {
+      "step": "score",
+      "tool": "fusion-decision-cv",
+      "status": "warning",
+      "duration_ms": 1.76,
+      "summary": "Confidence computed from measured evidence and the answer phrased from those measurements.",
+      "parameters": {
+        "confidence": "high",
+        "score": 0.9260321638440147
+      },
+      "warnings": []
+    },
+    {
+      "step": "verify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Evidence sufficient to release the answer.",
+      "parameters": {
+        "sufficient": true
+      },
+      "warnings": []
+    }
+  ],
+  "artifacts": [
+    {
+      "kind": "base",
+      "label": "Input image",
+      "url": "/fixtures/SAT-2026-000105/base.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": []
+    },
+    {
+      "kind": "class_map",
+      "label": "Land-cover classification",
+      "url": "/fixtures/SAT-2026-000105/overlay.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": [
+        {
+          "label": "Water",
+          "color": "#2166cd",
+          "key": "water"
+        },
+        {
+          "label": "Vegetation",
+          "color": "#2e9a3e",
+          "key": "vegetation"
+        },
+        {
+          "label": "Built Up",
+          "color": "#d6602d",
+          "key": "built_up"
+        },
+        {
+          "label": "Bare Soil",
+          "color": "#bfa878",
+          "key": "bare_soil"
+        }
+      ]
+    }
+  ],
+  "fixture": true
+}

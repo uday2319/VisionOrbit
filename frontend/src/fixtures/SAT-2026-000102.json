@@ -1,0 +1,738 @@
+{
+  "id": "SAT-2026-000102",
+  "request_id": "req-sat-2026-000102",
+  "created_at": "2026-08-26T09:06:00Z",
+  "status": "success",
+  "mode": "single_optical",
+  "title": "Text-guided region grounding",
+  "note": "Locates a countable class as regions with a reportable count.",
+  "query": "Where is the water?",
+  "task": "grounding",
+  "tool": "grounding-spectral-cv",
+  "tier": "classical",
+  "duration_ms": 324.18,
+  "answer": "Found 3 distinct water regions, covering about 1.16 km\u00b2 (11572 px). Each region is one connected patch of water mapped at about 10 m per pixel.",
+  "answer_withheld": null,
+  "confidence": {
+    "level": "high",
+    "score": 0.8731,
+    "sufficient": true,
+    "limiting_factor": "class_separability",
+    "reasons": [
+      "The grounded class was separable at 0.87; 3 region(s) returned from 11572 class pixels.",
+      "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00).",
+      "No processing warnings were raised."
+    ],
+    "factors": [
+      {
+        "name": "class_separability",
+        "value": 0.8731,
+        "weight": 0.45,
+        "kind": "gate",
+        "reason": "The grounded class was separable at 0.87; 3 region(s) returned from 11572 class pixels."
+      },
+      {
+        "name": "warnings",
+        "value": 1.0,
+        "weight": 0.1,
+        "kind": "contributor",
+        "reason": "No processing warnings were raised."
+      },
+      {
+        "name": "input_quality",
+        "value": 0.9895,
+        "weight": 0.25,
+        "kind": "contributor",
+        "reason": "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00)."
+      }
+    ]
+  },
+  "evidence": [
+    "Source: optical-classification (spectral-indices).",
+    "Classification method: spectral-indices; class separability 0.8731.",
+    "3 candidate patches above the 25-pixel floor (2500 m\u00b2 minimum region).",
+    "Region strength scored by mndwi (reported as evidence only, never used to accept or reject a region)."
+  ],
+  "warnings": [],
+  "data": {
+    "query": {
+      "raw": "Where is the water?",
+      "target": "water",
+      "target_phrase": "water",
+      "sector": null,
+      "sector_phrase": null,
+      "sector_interpretation": null,
+      "min_area_m2": null,
+      "max_area_m2": null,
+      "min_pixels": null,
+      "max_pixels": null,
+      "superlative": null,
+      "limit": null,
+      "wants_count": false,
+      "wants_area": false
+    },
+    "target": "water",
+    "count": 3,
+    "count_reportable": true,
+    "count_caveat": null,
+    "region_semantics": "Each region is one connected patch of water mapped at about 10 m per pixel.",
+    "source": "optical-classification (spectral-indices)",
+    "selected_pixels": 11572,
+    "selected_area_m2": 1157200.0,
+    "class_pixels": 11572,
+    "class_coverage_fraction": 0.0441,
+    "georeferenced": true,
+    "regions": [
+      {
+        "id": 1,
+        "pixel_area": 7565,
+        "area_m2": 756500.0,
+        "bbox_pixel": [
+          94,
+          197,
+          207,
+          283
+        ],
+        "bbox_geo": [
+          700940.0,
+          2097180.0,
+          702060.0,
+          2098030.0
+        ],
+        "polygon_pixel": [
+          [
+            97.0,
+            218.0
+          ],
+          [
+            94.0,
+            227.0
+          ],
+          [
+            94.0,
+            240.0
+          ],
+          [
+            100.0,
+            254.0
+          ],
+          [
+            112.0,
+            267.0
+          ],
+          [
+            135.0,
+            279.0
+          ],
+          [
+            148.0,
+            282.0
+          ],
+          [
+            169.0,
+            282.0
+          ],
+          [
+            182.0,
+            279.0
+          ],
+          [
+            192.0,
+            274.0
+          ],
+          [
+            201.0,
+            265.0
+          ],
+          [
+            205.0,
+            257.0
+          ],
+          [
+            206.0,
+            240.0
+          ],
+          [
+            200.0,
+            226.0
+          ],
+          [
+            188.0,
+            213.0
+          ],
+          [
+            168.0,
+            202.0
+          ],
+          [
+            148.0,
+            197.0
+          ],
+          [
+            121.0,
+            200.0
+          ],
+          [
+            111.0,
+            204.0
+          ]
+        ],
+        "polygon_geo": [
+          [
+            700970.0,
+            2097820.0
+          ],
+          [
+            700940.0,
+            2097730.0
+          ],
+          [
+            700940.0,
+            2097600.0
+          ],
+          [
+            701000.0,
+            2097460.0
+          ],
+          [
+            701120.0,
+            2097330.0
+          ],
+          [
+            701350.0,
+            2097210.0
+          ],
+          [
+            701480.0,
+            2097180.0
+          ],
+          [
+            701690.0,
+            2097180.0
+          ],
+          [
+            701820.0,
+            2097210.0
+          ],
+          [
+            701920.0,
+            2097260.0
+          ],
+          [
+            702010.0,
+            2097350.0
+          ],
+          [
+            702050.0,
+            2097430.0
+          ],
+          [
+            702060.0,
+            2097600.0
+          ],
+          [
+            702000.0,
+            2097740.0
+          ],
+          [
+            701880.0,
+            2097870.0
+          ],
+          [
+            701680.0,
+            2097980.0
+          ],
+          [
+            701480.0,
+            2098030.0
+          ],
+          [
+            701210.0,
+            2098000.0
+          ],
+          [
+            701110.0,
+            2097960.0
+          ]
+        ],
+        "centroid_geo": [
+          701500.398903,
+          2097599.958401
+        ],
+        "score": 0.8858,
+        "sector_overlap": null
+      },
+      {
+        "id": 2,
+        "pixel_area": 2067,
+        "area_m2": 206700.0,
+        "bbox_pixel": [
+          287,
+          302,
+          366,
+          512
+        ],
+        "bbox_geo": [
+          702870.0,
+          2094890.0,
+          703650.0,
+          2096980.0
+        ],
+        "polygon_pixel": [
+          [
+            290.0,
+            302.0
+          ],
+          [
+            287.0,
+            341.0
+          ],
+          [
+            296.0,
+            381.0
+          ],
+          [
+            324.0,
+            440.0
+          ],
+          [
+            329.0,
+            446.0
+          ],
+          [
+            350.0,
+            488.0
+          ],
+          [
+            358.0,
+            511.0
+          ],
+          [
+            364.0,
+            511.0
+          ],
+          [
+            365.0,
+            506.0
+          ],
+          [
+            358.0,
+            486.0
+          ],
+          [
+            333.0,
+            436.0
+          ],
+          [
+            327.0,
+            428.0
+          ],
+          [
+            303.0,
+            376.0
+          ],
+          [
+            296.0,
+            345.0
+          ],
+          [
+            296.0,
+            315.0
+          ],
+          [
+            299.0,
+            302.0
+          ]
+        ],
+        "polygon_geo": [
+          [
+            702900.0,
+            2096980.0
+          ],
+          [
+            702870.0,
+            2096590.0
+          ],
+          [
+            702960.0,
+            2096190.0
+          ],
+          [
+            703240.0,
+            2095600.0
+          ],
+          [
+            703290.0,
+            2095540.0
+          ],
+          [
+            703500.0,
+            2095120.0
+          ],
+          [
+            703580.0,
+            2094890.0
+          ],
+          [
+            703640.0,
+            2094890.0
+          ],
+          [
+            703650.0,
+            2094940.0
+          ],
+          [
+            703580.0,
+            2095140.0
+          ],
+          [
+            703330.0,
+            2095640.0
+          ],
+          [
+            703270.0,
+            2095720.0
+          ],
+          [
+            703030.0,
+            2096240.0
+          ],
+          [
+            702960.0,
+            2096550.0
+          ],
+          [
+            702960.0,
+            2096850.0
+          ],
+          [
+            702990.0,
+            2096980.0
+          ]
+        ],
+        "centroid_geo": [
+          703187.508251,
+          2095912.859369
+        ],
+        "score": 0.8678,
+        "sector_overlap": null
+      },
+      {
+        "id": 3,
+        "pixel_area": 1940,
+        "area_m2": 194000.0,
+        "bbox_pixel": [
+          326,
+          0,
+          373,
+          200
+        ],
+        "bbox_geo": [
+          703260.0,
+          2098010.0,
+          703710.0,
+          2100000.0
+        ],
+        "polygon_pixel": [
+          [
+            326.0,
+            0.0
+          ],
+          [
+            351.0,
+            51.0
+          ],
+          [
+            359.0,
+            75.0
+          ],
+          [
+            363.0,
+            96.0
+          ],
+          [
+            363.0,
+            124.0
+          ],
+          [
+            359.0,
+            145.0
+          ],
+          [
+            350.0,
+            172.0
+          ],
+          [
+            336.0,
+            198.0
+          ],
+          [
+            345.0,
+            199.0
+          ],
+          [
+            358.0,
+            174.0
+          ],
+          [
+            371.0,
+            132.0
+          ],
+          [
+            371.0,
+            90.0
+          ],
+          [
+            358.0,
+            46.0
+          ],
+          [
+            335.0,
+            0.0
+          ]
+        ],
+        "polygon_geo": [
+          [
+            703260.0,
+            2100000.0
+          ],
+          [
+            703510.0,
+            2099490.0
+          ],
+          [
+            703590.0,
+            2099250.0
+          ],
+          [
+            703630.0,
+            2099040.0
+          ],
+          [
+            703630.0,
+            2098760.0
+          ],
+          [
+            703590.0,
+            2098550.0
+          ],
+          [
+            703500.0,
+            2098280.0
+          ],
+          [
+            703360.0,
+            2098020.0
+          ],
+          [
+            703450.0,
+            2098010.0
+          ],
+          [
+            703580.0,
+            2098260.0
+          ],
+          [
+            703710.0,
+            2098680.0
+          ],
+          [
+            703710.0,
+            2099100.0
+          ],
+          [
+            703580.0,
+            2099540.0
+          ],
+          [
+            703350.0,
+            2100000.0
+          ]
+        ],
+        "centroid_geo": [
+          703553.294483,
+          2099011.163559
+        ],
+        "score": 0.8697,
+        "sector_overlap": null
+      }
+    ],
+    "excluded": {},
+    "evidence": {
+      "classification_method": "spectral-indices",
+      "indices_used": [
+        "mndwi",
+        "ndvi",
+        "ndbi"
+      ],
+      "class_separability": 0.8731,
+      "region_score_index": "mndwi",
+      "candidate_regions": 3,
+      "min_region_pixels": 25,
+      "min_region_area_m2": 2500.0,
+      "sector_selection": null
+    },
+    "warnings": []
+  },
+  "inputs": [
+    {
+      "filename": "scene_optical.tif",
+      "driver": "GTiff",
+      "width": 512,
+      "height": 512,
+      "bands": 6,
+      "dtype": "uint16",
+      "crs": "EPSG:32643",
+      "crs_epsg": 32643,
+      "transform": [
+        10.0,
+        0.0,
+        700000.0,
+        0.0,
+        -10.0,
+        2100000.0
+      ],
+      "bounds": [
+        700000.0,
+        2094880.0,
+        705120.0,
+        2100000.0
+      ],
+      "nodata": null,
+      "pixel_size": [
+        10.0,
+        10.0
+      ],
+      "georeferenced": true,
+      "band_descriptions": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "decimation": 1.0,
+      "modality": "optical",
+      "band_roles": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      }
+    }
+  ],
+  "trace": [
+    {
+      "step": "classify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.01,
+      "summary": "Query routed to the grounding task by deterministic keyword/shape rules (1 image(s), modalities ['optical']).",
+      "parameters": {
+        "task": "grounding"
+      },
+      "warnings": []
+    },
+    {
+      "step": "validate",
+      "tool": "grounding-spectral-cv",
+      "status": "ok",
+      "duration_ms": 0.01,
+      "summary": "Inputs accepted: modality and image count satisfy the tool's preconditions.",
+      "parameters": {
+        "images": 1,
+        "modalities": [
+          "optical"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "step": "preprocess",
+      "tool": "grounding-spectral-cv",
+      "status": "ok",
+      "duration_ms": 52.49,
+      "summary": "Inputs inspected and readied (quality assessed; any pair aligned to a common grid).",
+      "parameters": {
+        "input_quality": 0.9895
+      },
+      "warnings": []
+    },
+    {
+      "step": "execute",
+      "tool": "grounding-spectral-cv",
+      "status": "ok",
+      "duration_ms": 271.38,
+      "summary": "Ran grounding-spectral-cv (classical tier) over the prepared raster(s).",
+      "parameters": {
+        "tier": "classical"
+      },
+      "warnings": []
+    },
+    {
+      "step": "score",
+      "tool": "grounding-spectral-cv",
+      "status": "ok",
+      "duration_ms": 0.29,
+      "summary": "Confidence computed from measured evidence and the answer phrased from those measurements.",
+      "parameters": {
+        "confidence": "high",
+        "score": 0.8731
+      },
+      "warnings": []
+    },
+    {
+      "step": "verify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Evidence sufficient to release the answer.",
+      "parameters": {
+        "sufficient": true
+      },
+      "warnings": []
+    }
+  ],
+  "artifacts": [
+    {
+      "kind": "base",
+      "label": "Input image",
+      "url": "/fixtures/SAT-2026-000102/base.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": []
+    },
+    {
+      "kind": "grounding",
+      "label": "Grounded regions",
+      "url": "/fixtures/SAT-2026-000102/overlay.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": [
+        {
+          "label": "Matched region",
+          "color": "#f0c81e",
+          "key": "highlight"
+        }
+      ]
+    }
+  ],
+  "fixture": true
+}

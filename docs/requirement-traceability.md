@@ -1,0 +1,20 @@
+# SIH26167 SatQuery AI — Requirement Traceability Matrix
+
+This document maps every official requirement of Smart India Hackathon 2026 problem statement **SIH26167** to its implementation module, automated test case, and demo scenario.
+
+| SIH26167 Requirement | Implementation Module | Automated Test File | Demo Scenario |
+| :--- | :--- | :--- | :--- |
+| **Capability 1 — Single-Image VQA** | `backend/app/services/vqa.py`<br>`backend/app/agents/tools/vqa.py` | `backend/tests/agent/test_vqa_tool.py`<br>`backend/tests/services/test_vqa.py` | Demo 1: "Describe the land-cover and major objects..." |
+| **Capability 2 — Text-Guided Grounding** | `backend/app/services/grounding.py`<br>`backend/app/agents/tools/grounding.py` | `backend/tests/agent/test_grounding_tool.py`<br>`backend/tests/services/test_grounding.py` | Demo 2: "Highlight the buildings." |
+| **Capability 3 — Bi-Temporal Change Understanding** | `backend/app/services/change.py`<br>`backend/app/agents/tools/change.py` | `backend/tests/agent/test_change_tool.py`<br>`backend/tests/services/test_change.py` | Demo 3 & 4: "What changed..." & "Has built-up area increased?" |
+| **Capability 4 — Optical + SAR Paired Analysis** | `backend/app/services/fusion.py`<br>`backend/app/services/sar.py`<br>`backend/app/agents/tools/fusion.py` | `backend/tests/agent/test_fusion_tool.py`<br>`backend/tests/agent/test_sar_tool.py` | Demo 5: "Use optical and SAR images together..." |
+| **Capability 5 — Agentic Orchestration** | `backend/app/agents/classifier.py`<br>`backend/app/agents/router.py`<br>`backend/app/agents/registry.py` | `backend/tests/agent/test_classifier.py`<br>`backend/tests/agent/test_router.py` | All Demos (Observable execution trace) |
+| **GeoTIFF / TIFF Processing** | `backend/app/geospatial/raster.py`<br>`backend/app/geospatial/align.py` | `backend/tests/geospatial/test_geospatial.py` | GeoTIFF metadata & CRS alignment |
+| **Evidence Grounding & Confidence** | `backend/app/services/confidence.py`<br>`backend/app/services/features.py` | `backend/tests/services/test_confidence.py` | High/Medium/Low confidence report |
+| **Remote-Sensing Adaptation (EuroSAT)** | `ml/datasets/eurosat_adapter.py`<br>`ml/adaptation/prepare_data.py`<br>`ml/adaptation/train.py`<br>`ml/adaptation/inference.py`<br>`backend/app/services/scene.py`<br>`backend/app/agents/tools/scene.py` | `backend/tests/ml/test_rs_adaptation.py`<br>`backend/tests/agent/test_scene_tool.py`<br>`ml/adaptation/evaluate.py` | Real `torchvision` ResNet-18 + `IMAGENET1K_V1`, linear-probed on real EuroSAT Sentinel-2 imagery. Checkpoint `ml/checkpoints/satquery-rs-visual-v1/model.pt`; **87.25% top-1 on 400 held-out images** (remote-sensing adaptation evaluation, not an SIH benchmark). Registered as the `PREFERRED` captioning rung with the deterministic analyser as fallback. See `docs/remote-sensing-adaptation.md`. |
+| **Benchmark Evaluation Engine** | `ml/evaluation/generate_report.py`<br>`ml/datasets/adapters.py` | `ml/evaluation/evaluate_vqa.py`<br>`ml/evaluation/evaluate_grounding.py`<br>`ml/evaluation/evaluate_change.py`<br>`ml/evaluation/evaluate_cross_modal.py` | RSVQA, VRSBench, CDVQA metric report |
+| **ISRO / SAC Evaluation Readiness** | `evaluation_dataset/adapter.py` | `evaluation_dataset/adapter.py` | Drop-in Cartosat-2S & RISAT SAR test harness |
+| **Hallucination & Adversarial Resistance** | `backend/app/agents/` | `backend/tests/adversarial/test_adversarial.py` | Adversarial injection & confidence manipulation resistance |
+| **Interactive GUI & Comparison Slider** | `frontend/src/pages/`<br>`frontend/src/components/result/comparison-slider.tsx` | `frontend/tests/unit/` | Leaflet Map, Before/After Slider, Opacity controls, Trace viewer |
+| **REST API Server** | `backend/app/main.py`<br>`backend/app/api/routes/` | `backend/tests/api/test_routes.py` | `/api/upload`, `/api/analyze`, `/api/report` |
+| **Containerized Deployment** | `docker-compose.yml`<br>`docker/*.Dockerfile` | `make docker-build` | Multi-stage Docker build |

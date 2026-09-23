@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: satquery-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./storage:/app/storage
+      - ./reports:/app/reports
+      - ./data:/app/data
+    environment:
+      - SATQUERY_LOG_LEVEL=INFO
+      - SATQUERY_LOG_JSON=true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    container_name: satquery-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

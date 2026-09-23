@@ -1,0 +1,375 @@
+{
+  "id": "SAT-2026-000101",
+  "request_id": "req-sat-2026-000101",
+  "created_at": "2026-08-26T09:03:00Z",
+  "status": "success",
+  "mode": "single_optical",
+  "title": "Optical land-cover analysis",
+  "note": "Single 6-band optical scene: spectral-index classifier cascade.",
+  "query": "What land cover types are present in this scene?",
+  "task": "land_cover_analysis",
+  "tool": "landcover-spectral-cv",
+  "tier": "classical",
+  "duration_ms": 241.07,
+  "answer": "The scene is predominantly bare soil (69% of classified pixels). Class breakdown: bare soil 69%, vegetation 23%, water 4%.",
+  "answer_withheld": null,
+  "confidence": {
+    "level": "high",
+    "score": 0.8731,
+    "sufficient": true,
+    "limiting_factor": "class_separability",
+    "reasons": [
+      "Mean class separability 0.87 across the detected classes (method: spectral-indices).",
+      "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00).",
+      "No processing warnings were raised."
+    ],
+    "factors": [
+      {
+        "name": "class_separability",
+        "value": 0.8731,
+        "weight": 0.45,
+        "kind": "gate",
+        "reason": "Mean class separability 0.87 across the detected classes (method: spectral-indices)."
+      },
+      {
+        "name": "warnings",
+        "value": 1.0,
+        "weight": 0.1,
+        "kind": "contributor",
+        "reason": "No processing warnings were raised."
+      },
+      {
+        "name": "input_quality",
+        "value": 0.9895,
+        "weight": 0.25,
+        "kind": "contributor",
+        "reason": "Input image quality scored 0.99 (dynamic range 0.73, saturation 0.02, nodata 0.00)."
+      }
+    ]
+  },
+  "evidence": [
+    "Classification method: spectral-indices.",
+    "Dominant class is bare soil, covering 68.5% of valid pixels.",
+    "Measured class separability: 0.87.",
+    "Spectral indices used: mndwi, ndvi, ndbi."
+  ],
+  "warnings": [],
+  "data": {
+    "method": "spectral-indices",
+    "indices_used": [
+      "mndwi",
+      "ndvi",
+      "ndbi"
+    ],
+    "separability": 0.8731,
+    "classes": [
+      {
+        "class": "bare_soil",
+        "pixel_count": 179623,
+        "fraction": 0.6852,
+        "percentage": 68.52,
+        "area_m2": 17962300.0,
+        "mean_evidence": 0.0
+      },
+      {
+        "class": "vegetation",
+        "pixel_count": 59644,
+        "fraction": 0.2275,
+        "percentage": 22.75,
+        "area_m2": 5964400.0,
+        "mean_evidence": 0.8226
+      },
+      {
+        "class": "water",
+        "pixel_count": 11572,
+        "fraction": 0.0441,
+        "percentage": 4.41,
+        "area_m2": 1157200.0,
+        "mean_evidence": 0.7598
+      },
+      {
+        "class": "built_up",
+        "pixel_count": 11305,
+        "fraction": 0.0431,
+        "percentage": 4.31,
+        "area_m2": 1130500.0,
+        "mean_evidence": 0.6919
+      }
+    ],
+    "dominant": {
+      "class": "bare_soil",
+      "pixel_count": 179623,
+      "fraction": 0.6852,
+      "percentage": 68.52,
+      "area_m2": 17962300.0,
+      "mean_evidence": 0.0
+    },
+    "warnings": [],
+    "index_summaries": {
+      "brightness": {
+        "name": "brightness",
+        "formula": "mean(Red, Green, Blue), percentile-stretched",
+        "bands_used": [
+          "red",
+          "green",
+          "blue"
+        ],
+        "valid_fraction": 1.0,
+        "mean": 0.6617,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "bsi": {
+        "name": "bsi",
+        "formula": "((SWIR1+Red)-(NIR+Blue)) / ((SWIR1+Red)+(NIR+Blue))",
+        "bands_used": [
+          "swir1",
+          "red",
+          "nir",
+          "blue"
+        ],
+        "valid_fraction": 1.0,
+        "mean": 0.015,
+        "min": -0.4354,
+        "max": 0.3482
+      },
+      "exg": {
+        "name": "exg",
+        "formula": "2g - r - b  (normalised RGB chromaticity)",
+        "bands_used": [
+          "red",
+          "green",
+          "blue"
+        ],
+        "valid_fraction": 1.0,
+        "mean": 0.0662,
+        "min": -0.3666,
+        "max": 0.5386
+      },
+      "mndwi": {
+        "name": "mndwi",
+        "formula": "(Green - SWIR1) / (Green + SWIR1)",
+        "bands_used": [
+          "green",
+          "swir1"
+        ],
+        "valid_fraction": 1.0,
+        "mean": -0.3478,
+        "min": -0.6414,
+        "max": 0.7918
+      },
+      "ndbi": {
+        "name": "ndbi",
+        "formula": "(SWIR1 - NIR) / (SWIR1 + NIR)",
+        "bands_used": [
+          "swir1",
+          "nir"
+        ],
+        "valid_fraction": 1.0,
+        "mean": -0.0488,
+        "min": -0.498,
+        "max": 0.4855
+      },
+      "ndvi": {
+        "name": "ndvi",
+        "formula": "(NIR - Red) / (NIR + Red)",
+        "bands_used": [
+          "nir",
+          "red"
+        ],
+        "valid_fraction": 1.0,
+        "mean": 0.2875,
+        "min": -0.4573,
+        "max": 0.87
+      },
+      "ndwi": {
+        "name": "ndwi",
+        "formula": "(Green - NIR) / (Green + NIR)",
+        "bands_used": [
+          "green",
+          "nir"
+        ],
+        "valid_fraction": 1.0,
+        "mean": -0.3603,
+        "min": -0.8117,
+        "max": 0.6216
+      }
+    }
+  },
+  "inputs": [
+    {
+      "filename": "scene_optical.tif",
+      "driver": "GTiff",
+      "width": 512,
+      "height": 512,
+      "bands": 6,
+      "dtype": "uint16",
+      "crs": "EPSG:32643",
+      "crs_epsg": 32643,
+      "transform": [
+        10.0,
+        0.0,
+        700000.0,
+        0.0,
+        -10.0,
+        2100000.0
+      ],
+      "bounds": [
+        700000.0,
+        2094880.0,
+        705120.0,
+        2100000.0
+      ],
+      "nodata": null,
+      "pixel_size": [
+        10.0,
+        10.0
+      ],
+      "georeferenced": true,
+      "band_descriptions": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "decimation": 1.0,
+      "modality": "optical",
+      "band_roles": [
+        "blue",
+        "green",
+        "red",
+        "nir",
+        "swir1",
+        "swir2"
+      ],
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      }
+    }
+  ],
+  "trace": [
+    {
+      "step": "classify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Query routed to the land_cover_analysis task by deterministic keyword/shape rules (1 image(s), modalities ['optical']).",
+      "parameters": {
+        "task": "land_cover_analysis"
+      },
+      "warnings": []
+    },
+    {
+      "step": "validate",
+      "tool": "landcover-spectral-cv",
+      "status": "ok",
+      "duration_ms": 0.01,
+      "summary": "Inputs accepted: modality and image count satisfy the tool's preconditions.",
+      "parameters": {
+        "images": 1,
+        "modalities": [
+          "optical"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "step": "preprocess",
+      "tool": "landcover-spectral-cv",
+      "status": "ok",
+      "duration_ms": 48.06,
+      "summary": "Inputs inspected and readied (quality assessed; any pair aligned to a common grid).",
+      "parameters": {
+        "input_quality": 0.9895
+      },
+      "warnings": []
+    },
+    {
+      "step": "execute",
+      "tool": "landcover-spectral-cv",
+      "status": "ok",
+      "duration_ms": 192.82,
+      "summary": "Ran landcover-spectral-cv (classical tier) over the prepared raster(s).",
+      "parameters": {
+        "tier": "classical"
+      },
+      "warnings": []
+    },
+    {
+      "step": "score",
+      "tool": "landcover-spectral-cv",
+      "status": "ok",
+      "duration_ms": 0.18,
+      "summary": "Confidence computed from measured evidence and the answer phrased from those measurements.",
+      "parameters": {
+        "confidence": "high",
+        "score": 0.8730954614680096
+      },
+      "warnings": []
+    },
+    {
+      "step": "verify",
+      "tool": null,
+      "status": "ok",
+      "duration_ms": 0.0,
+      "summary": "Evidence sufficient to release the answer.",
+      "parameters": {
+        "sufficient": true
+      },
+      "warnings": []
+    }
+  ],
+  "artifacts": [
+    {
+      "kind": "base",
+      "label": "Input image",
+      "url": "/fixtures/SAT-2026-000101/base.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": []
+    },
+    {
+      "kind": "class_map",
+      "label": "Land-cover classification",
+      "url": "/fixtures/SAT-2026-000101/overlay.png",
+      "bounds_wgs84": {
+        "south": 18.936019982475173,
+        "west": 76.89924389576537,
+        "north": 18.982771612515812,
+        "east": 76.94838114083183
+      },
+      "legend": [
+        {
+          "label": "Water",
+          "color": "#2166cd",
+          "key": "water"
+        },
+        {
+          "label": "Vegetation",
+          "color": "#2e9a3e",
+          "key": "vegetation"
+        },
+        {
+          "label": "Built Up",
+          "color": "#d6602d",
+          "key": "built_up"
+        },
+        {
+          "label": "Bare Soil",
+          "color": "#bfa878",
+          "key": "bare_soil"
+        }
+      ]
+    }
+  ],
+  "fixture": true
+}

@@ -1,0 +1,66 @@
+[project]
+name = "satquery-ai-backend"
+version = "0.1.0"
+description = "SatQuery AI — vision-language assistant for multimodal remote sensing analysis (SIH26167)"
+requires-python = ">=3.12,<3.13"
+readme = "../README.md"
+
+# Runtime dependencies are pinned in requirements.txt for reproducible installs.
+# This file exists so the backend is importable as a package and so tooling
+# (pytest, ruff, mypy, coverage) has a single configuration home.
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra --strict-markers --tb=short"
+asyncio_mode = "auto"
+filterwarnings = [
+    "ignore::rasterio.errors.NotGeoreferencedWarning",
+    "ignore::DeprecationWarning",
+]
+markers = [
+    "slow: marks tests as slow",
+    "integration: end-to-end integration tests",
+    "geospatial: geospatial correctness tests",
+]
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/main.py", "*/tests/*", "app/workers/*"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "\\.\\.\\.",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".venv", "checkpoints"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP", "C4", "SIM"]
+ignore = ["E501", "B008", "SIM108"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+disallow_untyped_defs = false
+warn_unused_ignores = false
+warn_redundant_casts = true
+no_implicit_optional = true
+files = ["app"]

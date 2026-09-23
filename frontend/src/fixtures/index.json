@@ -1,0 +1,68 @@
+[
+  {
+    "id": "SAT-2026-000101",
+    "title": "Optical land-cover analysis",
+    "mode": "single_optical",
+    "task": "land_cover_analysis",
+    "query": "What land cover types are present in this scene?",
+    "created_at": "2026-08-26T09:03:00Z",
+    "status": "success",
+    "confidence": "high",
+    "answer": "The scene is predominantly bare soil (69% of classified pixels). Class breakdown: bare soil 69%, vegetation 23%, water 4%."
+  },
+  {
+    "id": "SAT-2026-000102",
+    "title": "Text-guided region grounding",
+    "mode": "single_optical",
+    "task": "grounding",
+    "query": "Where is the water?",
+    "created_at": "2026-08-26T09:06:00Z",
+    "status": "success",
+    "confidence": "high",
+    "answer": "Found 3 distinct water regions, covering about 1.16 km\u00b2 (11572 px). Each region is one connected patch of water mapped at about 10 m per pixel."
+  },
+  {
+    "id": "SAT-2026-000103",
+    "title": "Grounding with a withheld count",
+    "mode": "single_optical",
+    "task": "grounding",
+    "query": "How many buildings are there?",
+    "created_at": "2026-08-26T09:09:00Z",
+    "status": "success",
+    "confidence": "high",
+    "answer": "The built up extent is mapped (covering about 1.13 km\u00b2 (11305 px)), but the number of separate regions cannot be stated reliably from this image alone. Each region is one connected patch of built-up land mapped at about 10 m per pixel \u2014 a block of development, not an individual building. Structures closer together than the pixel size cannot be separated."
+  },
+  {
+    "id": "SAT-2026-000104",
+    "title": "SAR backscatter analysis",
+    "mode": "single_sar",
+    "task": "optical_sar_analysis",
+    "query": "Describe the SAR backscatter in this image.",
+    "created_at": "2026-08-26T09:12:00Z",
+    "status": "success",
+    "confidence": "high",
+    "answer": "The VV radar backscatter is predominantly diffuse scattering (92% of valid pixels, mean -13.0 dB). Regimes separated: smooth, diffuse, double bounce. Diffuse scattering is consistent with vegetation, bare soil, rough natural terrain \u2014 radar cannot decide between these from backscatter alone."
+  },
+  {
+    "id": "SAT-2026-000105",
+    "title": "Optical + SAR fusion",
+    "mode": "optical_sar_pair",
+    "task": "optical_sar_analysis",
+    "query": "Combine the optical and radar images to map land cover.",
+    "created_at": "2026-08-26T09:15:00Z",
+    "status": "success",
+    "confidence": "high",
+    "answer": "Combining optical and radar evidence, the scene is predominantly bare soil (70% of classified pixels). Both sensors independently agree on 98% of the classified area. The largest sensor disagreement (1.4% of the scene) was resolved by radar in favour of bare soil."
+  },
+  {
+    "id": "SAT-2026-000106",
+    "title": "Bi-temporal change analysis",
+    "mode": "bitemporal_pair",
+    "task": "change_detection",
+    "query": "What changed between the two dates?",
+    "created_at": "2026-08-26T09:18:00Z",
+    "status": "success",
+    "confidence": "medium",
+    "answer": "Change was detected across 10.7% of the valid area (about 2.81 km\u00b2). The dominant transition is bare soil to vegetation, covering 33% of the changed area. 66% of the detected change is corroborated by both detectors."
+  }
+]

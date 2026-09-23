@@ -1,0 +1,16 @@
+{
+  "dataset_name": "ISRO_SAC_Evaluation_Dataset_2026",
+  "sensors": ["Cartosat-2S", "RISAT-1/2"],
+  "format": "GeoTIFF",
+  "crs_required": "EPSG:32643",
+  "samples": [
+    {
+      "sample_id": "isro_eval_001",
+      "cartosat_image": "inputs/cartosat_2s_optical.tif",
+      "risat_image": "inputs/risat_sar_vv.tif",
+      "modality": "cross_modal",
+      "question": "Use the optical and SAR images together to identify built-up and water-covered regions.",
+      "ground_truth_answer": "Built-up areas identified in the eastern sector; water body confirmed via low SAR backscatter."
+    }
+  ]
+}
