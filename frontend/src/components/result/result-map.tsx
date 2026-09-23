@@ -12,8 +12,6 @@ import {
   ImageOff,
   Layers,
   MapPin,
-  Minus,
-  Plus,
   RotateCcw,
 } from 'lucide-react'
 import { Swatch } from '@/components/result/stat'
