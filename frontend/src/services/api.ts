@@ -265,7 +265,7 @@ function mapArtifacts(raw: BackendArtifact[] | undefined): Artifact[] {
   return (raw ?? []).map((a) => ({
     kind: a.kind,
     label: a.label,
-    url: a.url,
+    url: a.url.startsWith('http') ? a.url : apiUrl(a.url),
     bounds_wgs84: a.bounds_wgs84 ?? null,
     legend: a.legend ?? [],
   }))
