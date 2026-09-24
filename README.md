@@ -195,36 +195,7 @@ npm run dev
 ```
 UI: http://localhost:5173
 
-### Run with Docker
-```bash
-docker compose up --build
-```
-- Frontend: http://localhost
-- Backend: http://localhost:8000
-
----
-
-## 10. Running Tests
-
-```bash
-# Full test suite (lint + backend + frontend + evaluation)
-make test-all
-
-# Individual test categories
-python -m pytest backend/tests/unit -x -q
-python -m pytest backend/tests/agent -x -q
-python -m pytest backend/tests/geospatial -x -q
-python -m pytest backend/tests/adversarial -x -q
-```
-
----
-
-## 11. Running Demo
-
-```bash
-# Run all 5 mandatory SIH demo scenarios
-make demo-test
-```
+ 
 
 | Demo | Query | Mode |
 |:-----|:------|:-----|
@@ -266,16 +237,6 @@ make evaluate
 ```
 
 Generates reports at `reports/benchmark_evaluation_report.md` and `reports/benchmark_evaluation_report.json` with real metrics from actual tool execution.
-
----
-
-## 14. Known Limitations
-
-1. **One learned component, everything else classical**: `satquery-rs-visual-v1` is the only learned model. It is a scene-level land-use classifier used as a specialist evidence component — *not* itself the complete VQA system. VQA, grounding, change and fusion remain deterministic CV/RS analysis. A trained VLM (e.g., BLIP-2, InternVL) can be plugged into the PREFERRED tier without changing any caller code.
-2. **The adaptation is deliberately small**: 2,000 training images, 3 epochs, 5,130 trainable parameters, RGB only, ten closed EuroSAT classes, European Sentinel-2 imagery. The 87.25% figure applies to the EuroSAT test split and nothing else; accuracy on other sensors, regions or resolutions is unmeasured. Known confusion: Highway ↔ River. No synthetic training data is used anywhere.
-3. **No authentication**: The prototype omits auth/RBAC per SIH guidelines (§48).
-4. **CPU training**: Model adaptation is designed for CPU; GPU speeds it up but isn't required.
-5. **Limited SAR preprocessing**: Lee filter only; no polarimetric decomposition.
 
 ---
 
@@ -335,10 +296,3 @@ satquery-ai/
 ├── docs/               # Architecture & traceability docs
 └── reports/            # Generated evaluation reports
 ```
-
----
-
-## 📄 Documentation
-
-- [Requirement Traceability](docs/requirement-traceability.md)
-- [Architecture Documentation](docs/architecture.md)
